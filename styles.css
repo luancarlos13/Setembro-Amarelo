@@ -172,7 +172,7 @@ p {
   display: block;
   width: 25px;
   height: 3px;
-  background: var(--black);
+  background: var(--yellow);
   border-radius: 3px;
   transition: var(--transition);
 }
@@ -714,7 +714,7 @@ section {
     top: 70px;
     left: 0;
     right: 0;
-    background: var(--white);
+    background: var(--black);
     flex-direction: column;
     padding: 30px;
     gap: 20px;
