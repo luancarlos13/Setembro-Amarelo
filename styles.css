@@ -1,0 +1,806 @@
+:root {
+  /* Colors */
+  --black: #000000;
+  --white: #ffffff;
+  --yellow: #FFFF00;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Rolagem suave ao clicar em links de âncora */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Configurações base do body */
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, sans-serif;
+  background: var(--yellow);
+  color: var(var(--black));
+  line-height: 1.6;
+}
+
+/* Container centralizado com largura máxima */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Imagens responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove decoração de links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove marcadores de lista */
+ul {
+  list-style: none;
+}
+
+/* ========== 3. TIPOGRAFIA ========== */
+/* Título principal (Hero) */
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  /* Tamanho responsivo */
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Títulos de seção */
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* Subtítulos */
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Títulos menores */
+h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Parágrafos */
+p {
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+
+
+/* Header fixo no topo */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--black);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  /* Fica acima de todo conteúdo */
+  padding: 15px 0;
+}
+
+/* Container da navegação */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo/Nome do negócio */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.logo:hover {
+  color: #FFFF00;
+  transition: all 0.5s ease;
+}
+
+
+/* Menu de navegação */
+.nav-menu {
+  display: flex;
+  gap: 30px;
+}
+
+/* Links do menu */
+.nav-menu a {
+  font-weight: 500;
+  color: var(--white);
+  transition: var(--transition);
+  position: relative;
+}
+
+/* Hover nos links */
+.nav-menu a:hover {
+  color: var(--yellow);
+}
+
+/* Linha animada abaixo do link */
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: var(--transition);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* Botão hambúrguer (mobile) - escondido no desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Linhas do hambúrguer */
+.nav-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: var(--black);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+/* ========== 6. HERO SECTION ========== */
+/* Hero com imagem de fundo em tela cheia */
+.hero {
+  padding: 140px 0 80px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Container da imagem de fundo */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+/* Imagem de fundo do hero */
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay sobre a imagem para melhor legibilidade */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+      rgba(45, 42, 50, 0.9) 0%,
+      rgba(45, 42, 50, 0.7) 100%);
+}
+
+/* Grid do hero - 2 colunas */
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Textos do hero em branco */
+.hero h1 {
+  color: var(--white);
+}
+
+.hero h1:hover {
+  color: var(--yellow);
+  cursor: pointer;
+}
+
+.hero .hero-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero .stat-number {
+  color: var(--secondary);
+}
+
+.hero .stat-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Badge de destaque no hero */
+.hero-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Subtítulo do hero */
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  margin-bottom: 30px;
+}
+
+/* Container dos botões */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+/* Estatísticas do hero */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+
+/* Área visual do hero */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container da imagem principal do hero */
+.hero-image-container {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px #FFFF00;
+  border: 5px solid #FFFF00;
+}
+
+/* Imagem circular do hero */
+.hero-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: float 3s ease-in-out infinite;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.2rem;
+  font-size: clamp(1.1rem, 2vw, 1.7rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  background: linear-gradient(135deg, #f9ebff 0%, #FFFF00 100%);
+  color: #2c1231;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px #FFFF00;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px #FFFF00;
+  cursor: pointer;
+}
+
+/* Animação de flutuação */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* Badge flutuante no hero */
+.floating-badge {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  z-index: 2;
+}
+
+/* ========== 7. SEÇÕES GERAIS ========== */
+section {
+  padding: 100px 0;
+}
+
+/* Cabeçalho das seções */
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 60px;
+}
+
+.section-header h2 {
+  color: var(--black);
+}
+
+.section-header h2:hover {
+  cursor: pointer;
+}
+
+.section-header .h2-sintomas {
+  color: var(--black);
+}
+
+.section-header .h2-sintomas:hover {
+  cursor: pointer;
+}
+
+.section-header .title-niveis {
+  color: var(--black);
+}
+
+.section-header .title-niveis:hover {
+  cursor: pointer;
+}
+
+.section-header.tratamentos-title {
+  color: var(--black);
+}
+
+.section-header h2.tratamentos-title:hover {
+  cursor: pointer;
+}
+
+.section-header .faq-title {
+  color: var(--black);
+}
+
+.section-header .faq-title:hover {
+  cursor: pointer;
+}
+
+
+/* ========== 8. SEÇÃO SOBRE ========== */
+.sobre {
+  background: var(--lilas);
+}
+
+/* Grid da seção sobre */
+.sobre-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Imagem da seção sobre */
+.sobre-image {
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.sobre-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+
+}
+
+.sobre-image:hover img {
+  transform: scale(1.05);
+
+}
+
+.sobre-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--black);
+}
+
+/* Features da seção sobre */
+.sobre-features {
+  display: grid;
+  gap: 30px;
+}
+
+.feature {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.feature h3 {
+  color: var(--text);
+  margin-bottom: 5px;
+}
+
+.feature p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ========== 9. SEÇÃO SERVIÇOS ========== */
+.servicos {
+  background: var(--bg-alt);
+}
+
+/* Grid de cards de serviços */
+.servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Card de serviço com imagem */
+.servico-card {
+  background: var(--white);
+  box-shadow: 0 8px 20px var(--orange);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+/* Hover do card de serviço */
+.servico-card:hover {
+  transform: translateY(-5px);
+
+}
+
+/* Imagem do card de serviço */
+.servico-image {
+  width: 100%;
+
+}
+
+.servico-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: all 0.3 ease;
+  cursor: pointer;
+
+}
+
+.servico-image img:hover {
+  transform: scale(1.05);
+
+}
+
+/* Conteúdo do card de serviço */
+.servico-content {
+  padding: 25px;
+  text-align: center;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.servico-content h3 {
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.servico-content p {
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+/* ========== 13. SEÇÃO FAQ ========== */
+.faq {
+  background: var(--lilas);
+}
+
+/* Lista de perguntas */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Item individual do FAQ */
+.faq-item {
+  margin-bottom: 15px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Botão da pergunta */
+.faq-question {
+  width: 100%;
+  background: var(--yellow);
+  border: none;
+  padding: 20px 25px;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--black);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.faq-question:hover {
+  background: var(--bg-alt);
+}
+
+/* Ícone de expandir/colapsar */
+.faq-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: var(--transition);
+}
+
+/* Rotação do ícone quando ativo */
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Container da resposta (escondido por padrão) */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease,
+    padding 0.3s ease;
+  background: var(--white);
+}
+
+/* Resposta expandida */
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding: 20px 25px;
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+/* ========== 15. FOOTER ========== */
+.footer {
+  background: var(--black);
+  color: var(--lilas);
+  padding: 60px 0 20px;
+}
+
+.footer p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+
+.footer p:hover {
+  color: #FFFF00;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+/* ========== 16. RESPONSIVIDADE ========== */
+
+/* Tablets e telas médias */
+@media (max-width: 992px) {
+
+  /* Hero em coluna única no tablet */
+  .hero .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  /* Visual do hero primeiro no mobile */
+  .hero-visual {
+    order: -1;
+  }
+
+  .hero-image-container {
+    max-width: 300px;
+  }
+
+  /* Sobre em coluna única */
+  .sobre-content {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-image {
+    max-height: 400px;
+  }
+
+  /* Contato em coluna única */
+  .contato-content {
+    grid-template-columns: 1fr;
+  }
+
+  /* Galeria responsiva */
+  .galeria-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .galeria-item.grande {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+
+  /* Menu mobile */
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    transform: translateY(-150%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+  }
+
+  /* Menu mobile ativo */
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Mostra o botão hambúrguer */
+  .nav-toggle {
+    display: flex;
+
+  }
+
+  /* Animação do hambúrguer para X */
+  .nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* Ajustes de padding */
+  .hero {
+    padding: 120px 0 60px;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+
+  /* Grids em coluna única */
+  .servicos-grid,
+  .destaques-grid,
+  .beneficios-grid,
+  .depoimentos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Botões empilhados */
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+}
